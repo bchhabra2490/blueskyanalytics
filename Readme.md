@@ -1,10 +1,8 @@
 ## To Run Locally
 
-- Run `docker-compose up -d` in the root folder. It will start `mysql`, `phpmyadmin` and `redis`
-- Run `npm i`
-- Go To data_migration and run `node importData.js` and it will create the tables and import the data.
-- Go to root folder back and run `npm run dev` and the app will be up on PORT `3000`
+- Run `sh setup.sh`. Ensure that docker is installed on the system.
 
+- If Everything goes fine, app will be up on PORT `3000`.
 ## APIs
 
 - **/countries** - Return all countries
