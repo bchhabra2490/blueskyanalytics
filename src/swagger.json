@@ -21,7 +21,13 @@
                 "summary" : "Get all the countries",
                 "description": "Get all the countries",
                 "produces": ["application/json"],
-                "parameters": [],
+                "parameters": [{
+                    "name": "noCache",
+                    "in": "query",
+                    "description": "Returns data from DB. ByPass Cache Data when set to true",
+                    "required": false,
+                    "type": "boolean"
+                }],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -73,6 +79,13 @@
                         "description": "Return data of specified category only",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "noCache",
+                        "in": "query",
+                        "description": "Returns data from DB. ByPass Cache Data when set to true",
+                        "required": false,
+                        "type": "boolean"
                     }
                 ],
                 "responses": {
