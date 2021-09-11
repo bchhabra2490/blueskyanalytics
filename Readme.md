@@ -7,8 +7,8 @@
 
 ## APIs
 
-- /countries - Return all countries
-- /country/id?startYear=<startYear>&endYear=<endYear>&category=<category>. Possible values for category are given below.
+- **/countries** - Return all countries
+- **/country/id?startYear=`startYear`&endYear=`endYear`&category=`category`**. Possible values for category are given below.
 
 Add `&noCache=true` in query params of both APIs to pass through cache.
 
