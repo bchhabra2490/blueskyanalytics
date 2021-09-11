@@ -1,0 +1,44 @@
+version: "2"
+services:
+    mysql:
+        image: mysql
+        container_name: mysqldb
+        ports:
+            - "3306:3306"
+        volumes:
+          - dbdata:/var/lib/mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_PASSWORD=admin
+            - MYSQL_DATABASE=blueskyanalytics
+            - MYSQL_PASSWORD=admin
+        networks: 
+            - main-app-db-network
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: myadmin
+        links:
+            - "mysql"
+        ports:
+            - "8083:80"
+        environment: 
+            - PMA_HOST=mysql
+            - PMA_PORT=3306
+            - PMA_USER=root
+            - PMA_PASSWORD=admin
+        networks: 
+            - main-app-db-network
+    redis:
+        image: redis:alpine
+        container_name: blueskyanalyticscache
+        command: redis-server --requirepass admin
+        ports:
+            - "6379:6379"
+        networks: 
+            - main-app-db-network
+volumes:
+  dbdata:
+networks:
+    main-app-db-network:
+        name: main-app-db-network
+        driver: bridge
