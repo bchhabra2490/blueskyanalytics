@@ -4,7 +4,7 @@
 
 - If Everything goes fine, app will be up on PORT `3000`.
 ## APIs
-
+Check API Docs on `/api-docs`. Swagger OpenAPI spec integrated.
 - **/countries** - Return all countries
 - **/country/id?startYear=`startYear`&endYear=`endYear`&category=`category`**. Possible values for category are given below.
 

@@ -1,0 +1,190 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "BlueSky Analytics Coding Task",
+        "version": "1.0.0",
+        "title": "Tasks API",
+        "contact": {
+            "email": "bchhabra2490@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths" : {
+        "/countries" : {
+            "get" : {
+                "summary" : "Get all the countries",
+                "description": "Get all the countries",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/countriesResponse"
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ServerErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/country/{id}" : {
+            "get" : {
+                "summary" : "Get all the countries",
+                "description": "Get all the countries",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "country id whose data needs to be fetched",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "startYear",
+                        "in": "query",
+                        "description": "Considers years after and including startYear",
+                        "required": false,
+                        "type": "string"
+                    },{
+                        "name": "endYear",
+                        "in": "query",
+                        "description": "Considers years before and including startYear",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Return data of specified category only",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/countryResponse"
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ServerErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "countriesResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "boolean"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/countriesDataResponse"
+                    }
+                        
+                },
+                "source":{
+                    "type": "string"
+                }
+            }
+        },
+        "countryResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "boolean"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/countryDataResponse"
+                    }
+                        
+                },
+                "source":{
+                    "type": "string"
+                }
+            }
+        },
+        
+        "ServerErrorResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    },
+    "components":{
+        "schemas": {
+            "countriesDataResponse":{
+                "type":"object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                   },
+                   "country": {
+                       "type": "string"
+                   },
+                   "startYear": {
+                       "type": "string"
+                   },
+                   "endYear": {
+                       "type": "string"
+                   }
+                }
+            },
+            "countryDataResponse":{
+                "type":"object",
+                "properties": {
+                    "countryId": {
+                        "type": "integer"
+                   },
+                   "year": {
+                       "type": "integer"
+                   },
+                   "value": {
+                       "type": "integer"
+                   },
+                   "category": {
+                       "type": "string"
+                   },
+                   "country": {
+                       "type":"string"
+                   }
+                } 
+            }
+        }
+    }
+}

@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const redisClient = require('./redisSetup');
 // Read .env file from the project
@@ -34,6 +36,8 @@ app.use(cors({
     origin: true,
     credentials: true
 }));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.get('/', (request, response) => {
